@@ -45,7 +45,7 @@ Tool-search mode is the default and preferred mode. In that mode `tools/list` re
 Windows:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\skills\unreal-mcp-codex\scripts\check_unreal_mcp.ps1 -Path . -Port 8000 -UrlPath /mcp
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skills\unreal-engine-mcp-codex\scripts\check_unreal_mcp.ps1 -Path . -Port 8000 -UrlPath /mcp
 ```
 
 Use `-SkipHttp` if the editor is not running and you only need project/config inspection.

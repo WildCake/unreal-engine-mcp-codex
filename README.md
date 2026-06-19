@@ -1,6 +1,6 @@
-# Unreal MCP Codex Skill
+# Unreal Engine MCP for Codex
 
-Production-grade Codex skill for driving Unreal Engine 5.8+ through Epic's official `ModelContextProtocol` Unreal MCP server.
+Codex skill for driving Unreal Engine 5.8+ through Epic's official `ModelContextProtocol` Unreal MCP server.
 
 This repository packages a Codex skill that helps an agent:
 
@@ -14,16 +14,16 @@ This repository packages a Codex skill that helps an agent:
 
 ## Install
 
-Copy `skills/unreal-mcp-codex` into your Codex skills directory:
+Copy `skills/unreal-engine-mcp-codex` into your Codex skills directory:
 
 ```powershell
-Copy-Item -Recurse .\skills\unreal-mcp-codex "$env:USERPROFILE\.codex\skills\unreal-mcp-codex"
+Copy-Item -Recurse .\skills\unreal-engine-mcp-codex "$env:USERPROFILE\.codex\skills\unreal-engine-mcp-codex"
 ```
 
 Then start a new Codex session and use:
 
 ```text
-Use $unreal-mcp-codex to connect this Unreal project to Codex through official UE MCP.
+Use $unreal-engine-mcp-codex to connect this Unreal project to Codex through official UE MCP.
 ```
 
 ## Unreal Setup Summary
@@ -49,7 +49,7 @@ Or add the streamable HTTP server manually:
 codex mcp add unreal-mcp --url http://127.0.0.1:8000/mcp
 ```
 
-The skill contains detailed setup and troubleshooting under `skills/unreal-mcp-codex/references/`.
+The skill contains detailed setup and troubleshooting under `skills/unreal-engine-mcp-codex/references/`.
 
 ## Included Files
 
@@ -70,7 +70,7 @@ Adapted for Codex from:
 - Unreal MCP documentation: https://dev.epicgames.com/documentation/unreal-engine/unreal-mcp-in-unreal-editor
 - OpenAI Codex MCP documentation: https://developers.openai.com/codex/mcp
 
-This repository is not affiliated with Epic Games or OpenAI. Epic's original MIT notice is preserved in `skills/unreal-mcp-codex/LICENSE-EPIC-MIT.txt`.
+This repository is not affiliated with Epic Games or OpenAI. Epic's original MIT notice is preserved in `skills/unreal-engine-mcp-codex/LICENSE-EPIC-MIT.txt`.
 
 ## License
 

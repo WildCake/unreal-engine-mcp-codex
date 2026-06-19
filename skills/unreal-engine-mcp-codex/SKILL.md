@@ -1,9 +1,9 @@
 ---
-name: unreal-mcp-codex
+name: unreal-engine-mcp-codex
 description: "Use this skill for Unreal Engine 5.8+ work through the official Unreal MCP ModelContextProtocol server from Codex. Trigger when the user wants Codex to connect to, inspect, or mutate a live Unreal Editor project; configure UE MCP for Codex; troubleshoot missing Unreal MCP tools; spawn, move, duplicate, inspect, or delete actors; create or edit Blueprints, Widgets, Materials, Niagara, Sequencer, Control Rig, State Tree, Behavior Tree, GAS, meshes, assets, levels, or automation tests; run Live Coding through the editor; author new ToolsetRegistry toolsets; or create Unreal Agent Skills. Treat UE signals as triggers even without the word Unreal: .uproject, Content Browser, Outliner, PlayerStart, UCLASS, UPROPERTY, UFUNCTION, UObject, Slate, UHT, BP_, WBP_, M_, MI_, NS_, CR_, SK_, SM_, ABP_. Skip for Unity, Godot, non-UE blueprint usage, or conceptual Unreal docs questions that do not need project/editor action."
 ---
 
-# Unreal MCP Codex
+# Unreal Engine MCP for Codex
 
 Use the official Unreal Engine 5.8+ `ModelContextProtocol` plugin as the primary bridge between Codex and a live Unreal Editor. Prefer the built-in UE MCP server over older community bridge plugins unless the user explicitly asks for a different server.
 

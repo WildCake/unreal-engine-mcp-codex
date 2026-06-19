@@ -22,7 +22,7 @@ Do not use a bare `Engine` directory as the only root signal.
 On Windows, run this skill's probe when uncertain:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\skills\unreal-mcp-codex\scripts\check_unreal_mcp.ps1 -Path .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\skills\unreal-engine-mcp-codex\scripts\check_unreal_mcp.ps1 -Path .
 ```
 
 ## 2. Enable `ModelContextProtocol`
@@ -128,5 +128,5 @@ After Unreal Editor is running:
 Use a read-only prompt before mutating content:
 
 ```text
-Use $unreal-mcp-codex to connect to Unreal MCP and list the available toolsets. Do not modify assets.
+Use $unreal-engine-mcp-codex to connect to Unreal MCP and list the available toolsets. Do not modify assets.
 ```
