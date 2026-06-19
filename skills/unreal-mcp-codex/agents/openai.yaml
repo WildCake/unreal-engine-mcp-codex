@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unreal MCP Codex"
+  short_description: "Drive Unreal Editor through official UE MCP"
+  default_prompt: "Use $unreal-mcp-codex to inspect my Unreal project, connect Codex to UE 5.8 MCP, and make editor changes safely."
