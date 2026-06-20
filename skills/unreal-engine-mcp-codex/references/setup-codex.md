@@ -98,9 +98,11 @@ Project-scoped Codex config:
 ```toml
 [mcp_servers.unreal-mcp]
 url = "http://127.0.0.1:8000/mcp"
+enabled = true
+required = false
 startup_timeout_sec = 10
 tool_timeout_sec = 120
-enabled = true
+default_tools_approval_mode = "prompt"
 ```
 
 Equivalent CLI registration:
@@ -110,6 +112,8 @@ codex mcp add unreal-mcp --url http://127.0.0.1:8000/mcp
 ```
 
 Use project-local `.codex/config.toml` only for trusted projects. Use user-level `~/.codex/config.toml` if the local Codex surface does not load project MCP config reliably.
+
+This repository includes the same example at `.codex/config.toml.example`.
 
 ## 5. Verify
 

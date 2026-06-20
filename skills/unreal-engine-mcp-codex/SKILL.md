@@ -1,6 +1,6 @@
 ---
 name: unreal-engine-mcp-codex
-description: "Use this skill for Unreal Engine 5.8+ work through the official Unreal MCP ModelContextProtocol server from Codex. Trigger when the user wants Codex to connect to, inspect, or mutate a live Unreal Editor project; configure UE MCP for Codex; troubleshoot missing Unreal MCP tools; spawn, move, duplicate, inspect, or delete actors; create or edit Blueprints, Widgets, Materials, Niagara, Sequencer, Control Rig, State Tree, Behavior Tree, GAS, meshes, assets, levels, or automation tests; run Live Coding through the editor; author new ToolsetRegistry toolsets; or create Unreal Agent Skills. Treat UE signals as triggers even without the word Unreal: .uproject, Content Browser, Outliner, PlayerStart, UCLASS, UPROPERTY, UFUNCTION, UObject, Slate, UHT, BP_, WBP_, M_, MI_, NS_, CR_, SK_, SM_, ABP_. Skip for Unity, Godot, non-UE blueprint usage, or conceptual Unreal docs questions that do not need project/editor action."
+description: Operate Unreal Engine 5.8+ projects through Epic's official Unreal MCP from Codex. Use for live-editor inspection or edits, MCP setup and troubleshooting, ToolsetRegistry authoring, and Unreal editor automation. Do not use for conceptual Unreal questions that do not require a project or editor.
 ---
 
 # Unreal Engine MCP for Codex
@@ -17,14 +17,24 @@ Use the official Unreal Engine 5.8+ `ModelContextProtocol` plugin as the primary
 6. Read every MCP result. Some editor operations report failure in returned status fields instead of transport errors.
 7. If the MCP meta-tools are unavailable, do not pretend to be connected. Follow `references/setup-codex.md` or ask the user to launch Unreal Editor and start `ModelContextProtocol`.
 
+## Execution Mode Router
+
+Use live Unreal MCP only when the task requires editor state, Content Browser assets, Blueprint graph mutation, level operations, visual inspection, or PIE-specific behavior.
+
+Use `UnrealEditor-Cmd` and build tools by default for compilation, Automation Tests, Python validation, commandlets, cook/package smoke tests, data validation, log parsing, and multi-process network tests. Prefer unattended execution that does not open editor or game windows.
+
+Never launch the full Editor solely to run a test that has a command-line path.
+
 ## Workflow Router
 
+- Trigger aliases, naming prefixes, and Unreal-specific signal words: read `references/triggers.md`.
 - First-time Codex connection, `.uproject` plugin enablement, auto-start, or TOML config: read `references/setup-codex.md`.
 - Live editor changes or inspection through MCP: read `references/live-editor-workflow.md`.
 - Missing tools, stale registry, port collision, hangs, PIE problems, or connection failures: read `references/operations.md`.
 - Authoring or extending a UE MCP toolset: read `references/toolset-authoring.md`.
 - Creating or editing Unreal Agent Skills inside a UE project or plugin: read `references/unreal-agent-skills.md`.
 - Bulk edits, untrusted machines, `execute_tool_script`, approvals, or remote exposure questions: read `references/security.md`.
+- Engine version, required toolsets, and schema drift checks: read `references/version-matrix.md`.
 - Attribution, upstream provenance, and source links: read `references/upstream.md`.
 
 ## Project Discovery
@@ -62,10 +72,29 @@ Unreal projects can register Agent Skills inside the editor. At the start of unf
 ## Codex-Specific Notes
 
 - Codex MCP config is TOML, not Claude `.mcp.json`.
+- This skill declares the `unreal-mcp` dependency in `agents/openai.yaml`. If the tool still is not available, inspect the active Codex MCP config before attempting live-editor work.
 - Prefer the UE console command `ModelContextProtocol.GenerateClientConfig Codex` when the editor is running.
 - If Codex config already exists, the UE writer may refuse to overwrite it. Merge the Unreal entry manually instead of deleting unrelated config.
 - Codex can also add the streamable HTTP server with `codex mcp add unreal-mcp --url http://127.0.0.1:8000/mcp`.
 - Restart or reconnect Codex after changing MCP configuration so the server tools are exposed in the session.
+
+## Risk Classes
+
+| Class | Examples | Policy |
+|---|---|---|
+| R0 read-only | Inspect project, list toolsets, validate config | Safe to run automatically. |
+| R1 local reversible | Create staging assets, write reports, generate local config examples | Safe when the workspace state is understood. |
+| R2 multi-asset | Rename, move, batch edit, bulk import | Checkpoint first, report all touched assets. |
+| R3 compilation/schema | C++ APIs, reflected `UFUNCTION` toolsets, Blueprint compile workflows | Build or restart editor as needed, then verify. |
+| R4 destructive | Delete assets, overwrite production content, expose MCP beyond loopback | Require explicit user approval. |
+
+## Timeout and Cancellation
+
+- Use short connect probes before assuming MCP is available.
+- Use bounded timeouts for build, cook, automation, Python commandlet, and live MCP operations.
+- Retry read-only live MCP calls once after a clean timeout; do not retry editor mutations after an ambiguous timeout.
+- On timeout, terminate the process tree where possible, preserve logs, return the command line, exit code, elapsed time, and log path.
+- Do not continue with mutations after unknown major schema drift.
 
 ## Hard Stops
 

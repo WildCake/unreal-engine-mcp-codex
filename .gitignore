@@ -2,3 +2,5 @@
 Thumbs.db
 *.log
 *.tmp
+__pycache__/
+.pytest_cache/

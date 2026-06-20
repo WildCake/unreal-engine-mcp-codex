@@ -1,0 +1,7 @@
+[mcp_servers.unreal-mcp]
+url = "http://127.0.0.1:8000/mcp"
+enabled = true
+required = false
+startup_timeout_sec = 10
+tool_timeout_sec = 120
+default_tools_approval_mode = "prompt"

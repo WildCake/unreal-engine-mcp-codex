@@ -1,0 +1,35 @@
+{
+  "name": "unreal-engine-mcp-codex",
+  "version": "0.2.0",
+  "description": "Safe Codex workflows for Epic's official Unreal Engine 5.8 MCP server.",
+  "author": {
+    "name": "WildCake"
+  },
+  "repository": "https://github.com/WildCake/unreal-engine-mcp-codex",
+  "homepage": "https://github.com/WildCake/unreal-engine-mcp-codex",
+  "license": "MIT",
+  "keywords": [
+    "unreal-engine",
+    "ue5",
+    "mcp",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Unreal Engine MCP for Codex",
+    "shortDescription": "Operate UE 5.8 safely through Epic's MCP",
+    "longDescription": "Connect Codex to Unreal Engine 5.8's official ModelContextProtocol server, use live-editor MCP operations safely, and run unattended build, automation, validation, and cook workflows without opening editor windows.",
+    "developerName": "WildCake",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use Unreal MCP to inspect this project safely.",
+      "Run Unreal automation tests headlessly.",
+      "Check Unreal MCP setup for this project."
+    ],
+    "websiteURL": "https://github.com/WildCake/unreal-engine-mcp-codex"
+  }
+}

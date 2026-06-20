@@ -1,4 +1,15 @@
 interface:
-  display_name: "Unreal Engine MCP for Codex"
-  short_description: "Drive Unreal Editor through official UE MCP"
-  default_prompt: "Use $unreal-engine-mcp-codex to inspect my Unreal project, connect Codex to UE 5.8 MCP, and make editor changes safely."
+  display_name: "Unreal Engine MCP"
+  short_description: "Drive Unreal Engine 5.8+ through Epic's official MCP"
+  default_prompt: "Use $unreal-engine-mcp-codex to inspect this Unreal project through MCP, make the requested change safely, and verify the result."
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "unreal-mcp"
+      description: "Epic Unreal Engine 5.8 ModelContextProtocol server"
+      transport: "streamable_http"
+      url: "http://127.0.0.1:8000/mcp"

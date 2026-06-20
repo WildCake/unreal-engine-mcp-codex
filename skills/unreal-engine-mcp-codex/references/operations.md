@@ -50,6 +50,59 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\skills\unreal-engine-mcp-c
 
 Use `-SkipHttp` if the editor is not running and you only need project/config inspection.
 
+Cross-platform or CI:
+
+```powershell
+python .\skills\unreal-engine-mcp-codex\scripts\check_unreal_mcp.py --path . --port 8000 --url-path /mcp
+```
+
+Use `--skip-http` when only project/config inspection is required.
+
+## Headless Runner Scripts
+
+Use these scripts when the task has a command-line path. They write logs and JSON summaries under `Saved/AgentRuns` and avoid opening the full editor UI.
+
+### Automation Tests
+
+```powershell
+python .\skills\unreal-engine-mcp-codex\scripts\run_unreal_automation.py `
+  --project . `
+  --editor-cmd "C:\Path\To\UnrealEditor-Cmd.exe" `
+  --tests Project
+```
+
+Use `--no-null-rhi` only when the test needs rendering. Add extra Unreal flags with repeated `--extra-arg`.
+
+### Python Validation Commandlet
+
+```powershell
+python .\skills\unreal-engine-mcp-codex\scripts\run_unreal_python.py `
+  --project . `
+  --editor-cmd "C:\Path\To\UnrealEditor-Cmd.exe" `
+  --script .\Scripts\validate_content.py
+```
+
+### Build
+
+```powershell
+python .\skills\unreal-engine-mcp-codex\scripts\build_unreal.py `
+  --project . `
+  --engine-root "C:\Program Files\Epic Games\UE_5.8" `
+  --target MyProjectEditor `
+  --configuration Development
+```
+
+### Cook Smoke
+
+```powershell
+python .\skills\unreal-engine-mcp-codex\scripts\cook_unreal.py `
+  --project . `
+  --engine-root "C:\Program Files\Epic Games\UE_5.8" `
+  --platform Win64
+```
+
+Do not launch the full editor only to run build, validation, automation, or cook steps. Use live MCP only after a command-line step proves the project is in a sane state or when the task needs editor state.
+
 ## Debugging
 
 - Check Unreal Output Log for `LogModelContextProtocol`.
